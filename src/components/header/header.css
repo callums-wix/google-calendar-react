@@ -1,0 +1,86 @@
+.header {
+  position: relative;
+  justify-content: flex-start;
+  gap: 48px;
+  height: 64px;
+  padding: 12px 0px;
+  border-bottom: 1px solid var(--hairline);
+}
+.header-title-container {
+  align-items: center;
+  gap: var(--p-lg);
+  padding: 0 var(--p-lg);
+}
+.menu-toggle {
+  padding: 0 var(--p-lg);
+}
+.menu-toggle-svg {
+  height: 24px;
+  width: 24px;
+  background-image: url("images/burger.svg");
+}
+.title-image {
+  height: 40px;
+  width: 40px;
+}
+.menu-toggle-svg svg path {
+  fill: var(--on-surface-variant);
+}
+
+.nav-list {
+  align-items: center;
+  gap: var(--p-xl);
+}
+.arrow-container {
+  gap: var(--p-md);
+}
+.change-week-button {
+  height: 24px;
+  width: 24px;
+}
+.next-week-button {
+  background-image: url("/images/rightArrow.svg");
+  background-position: center;
+}
+.previous-week-button {
+  background-image: url("/images/leftArrow.svg");
+  background-position: center;
+}
+.view-arrow {
+  margin-bottom: -4px;
+  height: 16px;
+  width: 16px;
+  background-image: url("/images/downArrow.svg");
+  background-position: center;
+  background-size: contain;
+}
+.header-date {
+  font-size: 22px;
+  line-height: 28px;
+}
+.view-container {
+  position: absolute;
+  right: 60px;
+  top: 12px;
+}
+.view-menu {
+  flex-flow: column;
+  z-index: 1000;
+  position: absolute;
+  font-size: 14px;
+  top: 40px;
+  left: 0;
+  width: 80px;
+  padding: var(--p-lg) 0;
+  list-style: none;
+  background-color: var(--white);
+  box-shadow: var(--shadow-1);
+}
+.view-item {
+  width: 100%;
+  padding: var(--p-sm) var(--p-lg);
+  cursor: pointer;
+}
+.view-item:hover {
+  background-color: var(--hairline);
+}
