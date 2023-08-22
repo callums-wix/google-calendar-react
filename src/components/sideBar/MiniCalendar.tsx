@@ -1,6 +1,6 @@
 import { Direction } from "../../types";
-import { CSS, UNITS, dayOfWeeks } from "../../utils/consts";
-import { useState } from "react";
+import { CSS, DATA_ATTR, UNITS, dayOfWeeks } from "../../utils/consts";
+import { MouseEvent, useState } from "react";
 import "./miniCalendar.css";
 
 import {
@@ -14,17 +14,27 @@ import {
 } from "../../utils/utils";
 
 interface MiniCalendarProps {
-  selectedDate: Date;
+  mainDate: Date;
+  setMainDate: React.Dispatch<React.SetStateAction<Date>>;
+  miniCalDate: Date;
+  setMiniCalDate: React.Dispatch<React.SetStateAction<Date>>;
 }
 
-const MiniCalendar = ({ selectedDate }: MiniCalendarProps) => {
-  const [miniCalDate, setMiniCalDate] = useState(new Date());
-
+const MiniCalendar = ({
+  mainDate,
+  setMainDate,
+  miniCalDate,
+  setMiniCalDate,
+}: MiniCalendarProps) => {
   return (
     <aside className="sidebar-container">
       <div className={`${CSS.V_CONTAINER} mini-calendar-container`}>
         <MiniHeader miniCalDate={miniCalDate} setMiniCalDate={setMiniCalDate} />
-        <MiniCalGrid miniCalDate={miniCalDate} selectedDate={selectedDate} />
+        <MiniCalGrid
+          miniCalDate={miniCalDate}
+          mainDate={mainDate}
+          setMainDate={setMainDate}
+        />
       </div>
     </aside>
   );
@@ -46,12 +56,12 @@ const MiniHeader = ({ miniCalDate, setMiniCalDate }: MiniHeaderProps) => {
       <div className={`${CSS.H_CONTAINER} mini-btn-container`}>
         <NavButton
           dir="previous"
-          miniCalDate={new Date()}
+          miniCalDate={miniCalDate}
           setMiniCalDate={setMiniCalDate}
         />
         <NavButton
           dir="next"
-          miniCalDate={new Date()}
+          miniCalDate={miniCalDate}
           setMiniCalDate={setMiniCalDate}
         />
       </div>
@@ -79,10 +89,11 @@ const NavButton = ({ dir, miniCalDate, setMiniCalDate }: NavButtonProps) => {
 
 interface MinCalProps {
   miniCalDate: Date;
-  selectedDate: Date;
+  mainDate: Date;
+  setMainDate: React.Dispatch<React.SetStateAction<Date>>;
 }
 
-const MiniCalGrid = ({ miniCalDate, selectedDate }: MinCalProps) => {
+const MiniCalGrid = ({ miniCalDate, mainDate, setMainDate }: MinCalProps) => {
   return (
     <table className={`${CSS.V_CONTAINER} mini-calendar-grid`}>
       <thead>
@@ -100,20 +111,32 @@ const MiniCalGrid = ({ miniCalDate, selectedDate }: MinCalProps) => {
           })}
         </tr>
       </thead>
-      <MonthDates miniCalDate={miniCalDate} selectedDate={selectedDate} />
+      <MonthDates
+        miniCalDate={miniCalDate}
+        mainDate={mainDate}
+        setMainDate={setMainDate}
+      />
     </table>
   );
 };
 
 interface MonthDatesProps {
   miniCalDate: Date;
-  selectedDate: Date;
+  mainDate: Date;
+  setMainDate: React.Dispatch<React.SetStateAction<Date>>;
 }
-const MonthDates = ({ miniCalDate, selectedDate }: MonthDatesProps) => {
+const MonthDates = ({
+  miniCalDate,
+  mainDate,
+  setMainDate,
+}: MonthDatesProps) => {
   const firstDayOfMonth = getFirstDayOfMonth(miniCalDate);
   let dateMarker = new Date(firstDayOfMonth);
   return (
-    <tbody className="mini-grid-body" onClick={() => handleMiniDate}>
+    <tbody
+      className="mini-grid-body"
+      onClick={(e) => handleSelectDate(e, setMainDate)}
+    >
       {Array.from({ length: 6 }).map((_, i) => {
         const weekDates = createWeekDates(dateMarker);
         dateMarker = changeDateByDays(dateMarker, UNITS.DAYS_IN_WEEK);
@@ -124,7 +147,7 @@ const MonthDates = ({ miniCalDate, selectedDate }: MonthDatesProps) => {
                 key={date.getTime()}
                 date={date}
                 firstDayOfMonth={firstDayOfMonth}
-                selectedDate={selectedDate}
+                mainDate={mainDate}
               />
             ))}
           </tr>
@@ -137,19 +160,15 @@ const MonthDates = ({ miniCalDate, selectedDate }: MonthDatesProps) => {
 interface DateElementProps {
   date: Date;
   firstDayOfMonth: Date;
-  selectedDate: Date;
+  mainDate: Date;
 }
 
-const DateElement = ({
-  date,
-  firstDayOfMonth,
-  selectedDate,
-}: DateElementProps) => {
+const DateElement = ({ date, firstDayOfMonth, mainDate }: DateElementProps) => {
   let classes = [];
   if (date.toDateString() === new Date().toDateString())
     classes.push("calendar-date-today");
   if (
-    date.toDateString() === selectedDate.toDateString() &&
+    date.toDateString() === mainDate.toDateString() &&
     date.toDateString() !== new Date().toDateString()
   )
     classes.push("selected-date");
@@ -164,8 +183,16 @@ const DateElement = ({
   );
 };
 
-function handleMiniDate() {
-  console.log("click");
+function handleSelectDate(
+  e: MouseEvent,
+  setMainDate: React.Dispatch<React.SetStateAction<Date>>
+) {
+  if (
+    e.target instanceof HTMLElement &&
+    e.target.hasAttribute(DATA_ATTR.DATE_ID)
+  ) {
+    setMainDate(new Date(e.target.dataset.dateid as string));
+  }
 }
 
 export default MiniCalendar;

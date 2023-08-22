@@ -34,8 +34,8 @@ export function createDayId(date: Date): string {
   return date.toDateString().replace(whiteSpace, "-");
 }
 
-export function overlappingMonths(selectedDate: Date): string | null {
-  const dates = createWeekDates(selectedDate);
+export function overlappingMonths(mainDate: Date): string | null {
+  const dates = createWeekDates(mainDate);
   const months: string[] = [];
   for (const date of dates) {
     const monthString = date.toLocaleDateString("en-EN", { month: "short" });
@@ -45,17 +45,17 @@ export function overlappingMonths(selectedDate: Date): string | null {
   return months.join("-");
 }
 
-export function createWeekDates(selectedDate: Date): Date[] {
+export function createWeekDates(mainDate: Date): Date[] {
   const datesOfWeek = [...Array(UNITS.DAYS_IN_WEEK)].map((_, i) => {
-    const daysToShift = i - selectedDate.getDay();
-    const dateOfEachDay = changeDateByDays(selectedDate, daysToShift);
+    const daysToShift = i - mainDate.getDay();
+    const dateOfEachDay = changeDateByDays(mainDate, daysToShift);
     return dateOfEachDay;
   });
   return datesOfWeek;
 }
 
-export function createMonthDates(selectedDate: Date): Date[] {
-  const firstDayOfMonth = getFirstDayOfMonth(selectedDate);
+export function createMonthDates(mainDate: Date): Date[] {
+  const firstDayOfMonth = getFirstDayOfMonth(mainDate);
   let markerDate = firstDayOfMonth;
   let monthDates: Date[] = [];
   let currentMonth = true;
@@ -101,27 +101,24 @@ export function getFirstDayOfMonth(date: Date): Date {
 }
 
 export function changeByWeekOrMonth(
-  selectedDate: Date,
+  mainDate: Date,
   view: VIEW,
   direction: "previous" | "next"
 ): Date {
   if (view === VIEW.WEEK) {
-    const newDate = changeDateByDays(
-      selectedDate,
-      direction === "next" ? 7 : -7
-    );
+    const newDate = changeDateByDays(mainDate, direction === "next" ? 7 : -7);
     return newDate;
   }
   if (view === VIEW.MONTH) {
-    const daysInMonth = getDaysInMonth(selectedDate);
+    const daysInMonth = getDaysInMonth(mainDate);
     const newDate = changeDateByDays(
-      selectedDate,
+      mainDate,
       direction === "next" ? daysInMonth : -daysInMonth
     );
     return newDate;
   }
 
-  return selectedDate;
+  return mainDate;
 }
 
 export function getDaysInMonth(date: Date): number {

@@ -56,4 +56,6 @@ export const CSS = {
   HEADER: "header",
 };
 
-export const DATA_DATE_ID = "data-date-id";
+export const DATA_ATTR = {
+  DATE_ID: "data-dateid",
+};

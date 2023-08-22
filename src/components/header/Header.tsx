@@ -1,14 +1,20 @@
 import { useState } from "react";
 import { Direction } from "../../types";
 import { CSS, TITLE_IMAGE } from "../../utils/consts";
-import { VIEW } from "../../utils/utils";
+import { VIEW, changeByWeekOrMonth, getMonthString } from "../../utils/utils";
 import "./header.css";
 
-const Header = () => {
+interface HeaderProps {
+  view: VIEW;
+  mainDate: Date;
+  setMainDate: React.Dispatch<React.SetStateAction<Date>>;
+}
+
+const Header = ({ view, mainDate, setMainDate }: HeaderProps) => {
   return (
     <header className={`${CSS.H_CONTAINER} header`}>
       <HeaderTitle />
-      <NavBar />
+      <NavBar view={view} mainDate={mainDate} setMainDate={setMainDate} />
     </header>
   );
 };
@@ -24,15 +30,24 @@ const HeaderTitle = () => {
     </div>
   );
 };
+interface NavBarProps {
+  view: VIEW;
+  mainDate: Date;
+  setMainDate: React.Dispatch<React.SetStateAction<Date>>;
+}
+const NavBar = ({ view, mainDate, setMainDate }: NavBarProps) => {
+  const dateTitle = `${getMonthString(
+    mainDate,
+    view
+  )} ${mainDate.getFullYear()}`;
 
-const NavBar = () => {
   return (
     <nav className={`${CSS.H_CONTAINER} nav-container`}>
       <ul className={`nav-list ${CSS.H_CONTAINER}`}>
         <li className="nav-item">
           <button
             className="todau-button button hairline-button"
-            onClick={handleSwitchView}
+            onClick={() => handleChangeToToday(setMainDate)}
           >
             Today
           </button>
@@ -40,21 +55,27 @@ const NavBar = () => {
         <li className="nav-item h-container arrow-container">
           <button
             className="previous-week-button change-week-button button"
-            onClick={() => handleWeekMonthChange("previous")}
+            onClick={() =>
+              handleWeekMonthChange("previous", view, mainDate, setMainDate)
+            }
           ></button>
           <button
             className="next-week-button change-week-button button"
-            onClick={() => handleWeekMonthChange("next")}
+            onClick={() =>
+              handleWeekMonthChange("next", view, mainDate, setMainDate)
+            }
           ></button>
         </li>
-        <li className="header-date nav-item">Aug 2023</li>
-        <ViewMenu />
+        <li className="header-date nav-item">{dateTitle}</li>
+        <ViewMenu view={view} />
       </ul>
     </nav>
   );
 };
-
-const ViewMenu = () => {
+interface ViewMenuProps {
+  view: VIEW;
+}
+const ViewMenu = ({ view }: ViewMenuProps) => {
   const [toggleViewMenu, setToggleViewMenu] = useState(false);
   return (
     <li className="view-container nav-item">
@@ -62,7 +83,8 @@ const ViewMenu = () => {
         className="view-button hairline-button button h-container"
         onClick={() => setToggleViewMenu(!toggleViewMenu)}
       >
-        Week
+        {view.toLowerCase()}
+        <span className="view-arrow"></span>
         {toggleViewMenu && (
           <menu className="view-menu">
             <ViewButton view={VIEW.WEEK} viewText="Week" />
@@ -87,11 +109,23 @@ const ViewButton = ({ view, viewText }: ViewButtonProps) => {
   );
 };
 
+function handleChangeToToday(
+  mainDate: React.Dispatch<React.SetStateAction<Date>>
+) {
+  mainDate(new Date());
+}
+
 function handleSwitchView() {
   console.log("Switch View");
 }
-function handleWeekMonthChange(dir: Direction) {
-  console.log(dir);
+function handleWeekMonthChange(
+  dir: Direction,
+  view: VIEW,
+  mainDate: Date,
+  setMainDate: React.Dispatch<React.SetStateAction<Date>>
+) {
+  const newDate = changeByWeekOrMonth(mainDate, view, dir);
+  setMainDate(newDate);
 }
 
 export default Header;
