@@ -1,0 +1,62 @@
+.sidebar-container {
+  flex: 0 0 256px;
+  padding-left: var(--p-vl);
+  padding-top: 84px;
+}
+
+.mini-calendar-container {
+  width: 215px;
+}
+.mini-header-container {
+  height: 32px;
+  width: 100%;
+  padding: 0 var(--p-lg);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--on-surface);
+  justify-content: space-between;
+  align-items: center;
+}
+.mini-btn-container {
+  align-items: center;
+  gap: var(--p-md);
+}
+.mini-btn {
+  vertical-align: middle;
+  height: 18px;
+  width: 18px;
+  background-position: center;
+  background-size: contain;
+}
+.mini-next-btn {
+  background-image: url("/images/rightArrow.svg");
+}
+.mini-previous-btn {
+  background-image: url("/images/leftArrow.svg");
+}
+.mini-calendar-grid {
+  width: 100%;
+  font-size: 10px;
+}
+.mini-row {
+  width: 100%;
+  height: 28px;
+  align-items: center;
+  text-align: center;
+}
+.mini-cell {
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+}
+.mini-month-day:hover {
+  background-color: var(--hairline);
+}
+.mini-month-day {
+  cursor: pointer;
+  border-radius: 50%;
+}
+.selected-date {
+  background-color: var(--secondary-variant);
+  color: var(--on-secondary-variant);
+}

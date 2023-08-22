@@ -23,6 +23,10 @@ export const TOOLTIP_DATE = "End date must be afer start date!";
 
 export const TITLE_IMAGE =
   "https://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_4_2x.png";
+
+export const STRINGS = {
+  TOOLTIP_DATE: "End date must be afer start date!",
+};
 export const UNITS = {
   GRID_HEIGHT: 48,
   HOURS_IN_DAY: 24,

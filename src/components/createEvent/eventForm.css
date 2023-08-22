@@ -1,0 +1,44 @@
+/* FORM */
+label {
+  position: relative;
+}
+.input {
+  border: 0;
+  outline: 0;
+  padding: 0;
+}
+.form-dialog {
+  width: 480px;
+  top: calc(50vh - 200px);
+  left: calc(50vw - 240px);
+}
+.event-form {
+  gap: var(--p-vl);
+}
+.form-title-input {
+  width: 80%;
+  border-bottom: 1px solid var(--hairline);
+}
+.datetime-label {
+  width: 60%;
+}
+.input-error {
+  border-bottom: 1px solid var(--textfield-error);
+}
+.event-submit-button {
+  margin: 0 auto;
+  width: fit-content;
+}
+.text-area {
+  width: 100%;
+}
+.error-tooltip {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  background-color: var(--white);
+  border: 1px solid var(--textfield-error);
+  width: 170px;
+  padding: var(--p-vs) var(--p-sm);
+  font-size: 12px;
+}

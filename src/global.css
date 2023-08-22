@@ -1,0 +1,176 @@
+/* CSS RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+/* VARIABLES */
+:root {
+  /* colours */
+  --primary: rgb(26, 115, 232);
+  --primary-variant: rgb(66, 133, 244);
+  --secondary: rgb(232, 240, 254);
+  --secondary-variant: rgb(210, 227, 252, 1);
+  --on-secondary: rgb(25, 103, 210);
+  --on-secondary-variant: rgb(24, 90, 188);
+  --surface: #fff;
+  --surface-transparent: rgba(255, 255, 255, 0);
+  --on-surface: rgb(60, 64, 67);
+  --on-surface-variant: rgb(95, 99, 104);
+  --on-surface-variant-agm: #70757a;
+  --background: linen;
+  --on-background: rgb(32, 33, 36);
+  --hairline: rgb(218, 220, 224);
+  --event-color: rgb(3, 155, 229);
+  --textfield-error: rgb(197, 34, 31);
+  --white: linen;
+  --faded: rgb(112, 117, 122);
+  /* layout */
+  --cell-height: 48px;
+  --header-height: 126px;
+  /* padding */
+  --p-vs: 2px;
+  --p-sm: 4px;
+  --p-md: 8px;
+  --p-lg: 12px;
+  --p-vl: 16px;
+  --p-xl: 24px;
+  /* box shadow */
+  --shadow-1: 0px 1px 2px 0px rgba(60, 64, 67, 0.3),
+    0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+  --shadow-5: 0px 4px 4px 0px rgba(60, 64, 67, 0.3),
+    0px 8px 12px 6px rgba(60, 64, 67, 0.15);
+  --shadow--error: 0px 2px 2px -2px rgba(197, 34, 31),
+    0px 2px 3px -3px rgba(197, 34, 31);
+}
+/* GENERAL */
+body,
+#root,
+.body {
+  height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  background-color: var(--white);
+  display: flex;
+  flex-flow: column;
+}
+.h-container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.v-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+svg,
+path {
+  pointer-events: none;
+}
+dialog {
+  background-color: var(--white);
+  box-shadow: var(--shadow-1);
+  border: 0;
+  border-radius: 4px;
+}
+input,
+textarea {
+  background-color: var(--white);
+}
+.hidden {
+  display: none;
+}
+
+/* TYPOGRAPHY */
+
+h1 {
+  font-size: 22px;
+  color: var(--on-surface);
+  line-height: 24px;
+  vertical-align: middle;
+  font-weight: 400;
+}
+.small-text {
+  color: var(--faded);
+  font-size: 10px;
+}
+
+/* BUTTONS */
+button {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  cursor: pointer;
+}
+.button {
+  background-color: var(--background);
+}
+.hairline-button {
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--on-surface);
+  height: 36px;
+  padding: var(--p-sm) var(--p-lg);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  align-items: center;
+  text-transform: capitalize;
+}
+.hairline-button:hover,
+.hairline-button:focus {
+  background-color: var(--hairline);
+}
+.close-dialog {
+  position: absolute;
+  top: var(--p-md);
+  right: var(--p-md);
+  width: 24px;
+  height: 24px;
+  background-image: url("/images/close.svg");
+  background-position: center;
+}
+
+.main-container {
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}

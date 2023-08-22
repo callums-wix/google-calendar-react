@@ -1,0 +1,24 @@
+.create-event-button {
+  position: absolute;
+  left: var(--p-lg);
+  top: var(--p-vl);
+  gap: var(--p-md);
+  align-items: center;
+  background-color: var(--background);
+  box-shadow: var(--shadow-1);
+  height: var(--cell-height);
+  padding: var(--p-md);
+  border-radius: calc(var(--cell-height) / 2);
+  transition: box-shadow 0.2s ease-in-out;
+  font-weight: 500;
+  line-height: 36px;
+  font-size: 14px;
+}
+.create-event-button:hover {
+  box-shadow: var(--shadow-5);
+}
+.event-button-plus {
+  height: 36px;
+  width: 36px;
+  background-image: url("/images/createButton.svg");
+}
