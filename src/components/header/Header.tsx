@@ -8,7 +8,7 @@ interface HeaderProps {
   view: VIEW;
   mainDate: Date;
   setMainDate: (date: Date) => void;
-  setView: React.Dispatch<React.SetStateAction<VIEW>>;
+  setView: (view: VIEW) => void;
 }
 
 const Header = ({ view, mainDate, setMainDate, setView }: HeaderProps) => {
@@ -40,7 +40,7 @@ interface NavBarProps {
   view: VIEW;
   mainDate: Date;
   setMainDate: (date: Date) => void;
-  setView: React.Dispatch<React.SetStateAction<VIEW>>;
+  setView: (view: VIEW) => void;
 }
 const NavBar = ({ view, mainDate, setMainDate, setView }: NavBarProps) => {
   const dateTitle = `${getMonthString(
@@ -81,7 +81,7 @@ const NavBar = ({ view, mainDate, setMainDate, setView }: NavBarProps) => {
 };
 interface ViewMenuProps {
   view: VIEW;
-  setView: React.Dispatch<React.SetStateAction<VIEW>>;
+  setView: (view: VIEW) => void;
 }
 const ViewMenu = ({ view, setView }: ViewMenuProps) => {
   const [toggleViewMenu, setToggleViewMenu] = useState(false);
@@ -107,7 +107,7 @@ const ViewMenu = ({ view, setView }: ViewMenuProps) => {
 interface ViewButtonProps {
   viewText: string;
   view: VIEW;
-  setView: React.Dispatch<React.SetStateAction<VIEW>>;
+  setView: (view: VIEW) => void;
 }
 
 const ViewButton = ({ view, viewText, setView }: ViewButtonProps) => {
