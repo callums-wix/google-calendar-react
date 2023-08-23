@@ -6,30 +6,38 @@ import { CSS } from "./utils/consts";
 import EventForm from "./components/createEvent/EventForm";
 import useOpenDialog from "./hooks/useDialog";
 import { VIEW } from "./utils/utils";
-import useStateSideEffect from "./hooks/useStateSideEffect";
+import MainCalendar from "./components/mainCalendar/MainCalendar";
 
 function App() {
   const [miniCalDate, setMiniCalDate] = useState(new Date());
-  const [mainDate, setMainDate] = useStateSideEffect<Date>(
-    () => setMiniCalDate(mainDate),
-    new Date()
-  );
-
+  const [mainDate, setMainDate] = useState(new Date());
   const [view, setView] = useState(VIEW.WEEK);
+
   const formRef = useRef<HTMLDialogElement>(null);
   const [showEventForm, setShowEventForm] = useOpenDialog(formRef);
 
+  function handleMainDate(date: Date) {
+    setMiniCalDate(date);
+    setMainDate(date);
+  }
+
   return (
     <>
-      <Header view={view} mainDate={mainDate} setMainDate={setMainDate} />
+      <Header
+        view={view}
+        mainDate={mainDate}
+        setMainDate={handleMainDate}
+        setView={setView}
+      />
       <main className={`${CSS.H_CONTAINER} main-container`}>
         <CreateEventBtn setShowEventForm={setShowEventForm} />
         <MiniCalendar
           mainDate={mainDate}
-          setMainDate={setMainDate}
+          setMainDate={handleMainDate}
           miniCalDate={miniCalDate}
           setMiniCalDate={setMiniCalDate}
         />
+        <MainCalendar mainDate={mainDate} view={view} />
         {showEventForm && (
           <EventForm setShowEventForm={setShowEventForm} formRef={formRef} />
         )}
