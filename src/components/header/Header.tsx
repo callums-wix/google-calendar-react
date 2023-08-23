@@ -7,14 +7,20 @@ import "./header.css";
 interface HeaderProps {
   view: VIEW;
   mainDate: Date;
-  setMainDate: React.Dispatch<React.SetStateAction<Date>>;
+  setMainDate: (date: Date) => void;
+  setView: React.Dispatch<React.SetStateAction<VIEW>>;
 }
 
-const Header = ({ view, mainDate, setMainDate }: HeaderProps) => {
+const Header = ({ view, mainDate, setMainDate, setView }: HeaderProps) => {
   return (
     <header className={`${CSS.H_CONTAINER} header`}>
       <HeaderTitle />
-      <NavBar view={view} mainDate={mainDate} setMainDate={setMainDate} />
+      <NavBar
+        view={view}
+        mainDate={mainDate}
+        setMainDate={setMainDate}
+        setView={setView}
+      />
     </header>
   );
 };
@@ -33,9 +39,10 @@ const HeaderTitle = () => {
 interface NavBarProps {
   view: VIEW;
   mainDate: Date;
-  setMainDate: React.Dispatch<React.SetStateAction<Date>>;
+  setMainDate: (date: Date) => void;
+  setView: React.Dispatch<React.SetStateAction<VIEW>>;
 }
-const NavBar = ({ view, mainDate, setMainDate }: NavBarProps) => {
+const NavBar = ({ view, mainDate, setMainDate, setView }: NavBarProps) => {
   const dateTitle = `${getMonthString(
     mainDate,
     view
@@ -67,15 +74,16 @@ const NavBar = ({ view, mainDate, setMainDate }: NavBarProps) => {
           ></button>
         </li>
         <li className="header-date nav-item">{dateTitle}</li>
-        <ViewMenu view={view} />
+        <ViewMenu view={view} setView={setView} />
       </ul>
     </nav>
   );
 };
 interface ViewMenuProps {
   view: VIEW;
+  setView: React.Dispatch<React.SetStateAction<VIEW>>;
 }
-const ViewMenu = ({ view }: ViewMenuProps) => {
+const ViewMenu = ({ view, setView }: ViewMenuProps) => {
   const [toggleViewMenu, setToggleViewMenu] = useState(false);
   return (
     <li className="view-container nav-item">
@@ -87,8 +95,8 @@ const ViewMenu = ({ view }: ViewMenuProps) => {
         <span className="view-arrow"></span>
         {toggleViewMenu && (
           <menu className="view-menu">
-            <ViewButton view={VIEW.WEEK} viewText="Week" />
-            <ViewButton view={VIEW.MONTH} viewText="Month" />
+            <ViewButton view={VIEW.WEEK} viewText="Week" setView={setView} />
+            <ViewButton view={VIEW.MONTH} viewText="Month" setView={setView} />
           </menu>
         )}
       </button>
@@ -99,30 +107,30 @@ const ViewMenu = ({ view }: ViewMenuProps) => {
 interface ViewButtonProps {
   viewText: string;
   view: VIEW;
+  setView: React.Dispatch<React.SetStateAction<VIEW>>;
 }
 
-const ViewButton = ({ view, viewText }: ViewButtonProps) => {
+const ViewButton = ({ view, viewText, setView }: ViewButtonProps) => {
   return (
-    <button className="view-item" data-view={view} onClick={handleSwitchView}>
+    <button
+      className="view-item"
+      data-view={view}
+      onClick={() => setView(view)}
+    >
       {viewText}
     </button>
   );
 };
 
-function handleChangeToToday(
-  mainDate: React.Dispatch<React.SetStateAction<Date>>
-) {
-  mainDate(new Date());
+function handleChangeToToday(setMainDate: (date: Date) => void) {
+  setMainDate(new Date());
 }
 
-function handleSwitchView() {
-  console.log("Switch View");
-}
 function handleWeekMonthChange(
   dir: Direction,
   view: VIEW,
   mainDate: Date,
-  setMainDate: React.Dispatch<React.SetStateAction<Date>>
+  setMainDate: (date: Date) => void
 ) {
   const newDate = changeByWeekOrMonth(mainDate, view, dir);
   setMainDate(newDate);

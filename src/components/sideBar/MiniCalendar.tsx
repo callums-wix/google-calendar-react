@@ -1,6 +1,6 @@
 import { Direction } from "../../types";
 import { CSS, DATA_ATTR, UNITS, dayOfWeeks } from "../../utils/consts";
-import { MouseEvent, useState } from "react";
+import { MouseEvent } from "react";
 import "./miniCalendar.css";
 
 import {
@@ -15,7 +15,8 @@ import {
 
 interface MiniCalendarProps {
   mainDate: Date;
-  setMainDate: React.Dispatch<React.SetStateAction<Date>>;
+  setMainDate: (date: Date) => void;
+
   miniCalDate: Date;
   setMiniCalDate: React.Dispatch<React.SetStateAction<Date>>;
 }
@@ -90,7 +91,7 @@ const NavButton = ({ dir, miniCalDate, setMiniCalDate }: NavButtonProps) => {
 interface MinCalProps {
   miniCalDate: Date;
   mainDate: Date;
-  setMainDate: React.Dispatch<React.SetStateAction<Date>>;
+  setMainDate: (date: Date) => void;
 }
 
 const MiniCalGrid = ({ miniCalDate, mainDate, setMainDate }: MinCalProps) => {
@@ -123,7 +124,7 @@ const MiniCalGrid = ({ miniCalDate, mainDate, setMainDate }: MinCalProps) => {
 interface MonthDatesProps {
   miniCalDate: Date;
   mainDate: Date;
-  setMainDate: React.Dispatch<React.SetStateAction<Date>>;
+  setMainDate: (date: Date) => void;
 }
 const MonthDates = ({
   miniCalDate,
@@ -183,10 +184,7 @@ const DateElement = ({ date, firstDayOfMonth, mainDate }: DateElementProps) => {
   );
 };
 
-function handleSelectDate(
-  e: MouseEvent,
-  setMainDate: React.Dispatch<React.SetStateAction<Date>>
-) {
+function handleSelectDate(e: MouseEvent, setMainDate: (date: Date) => void) {
   if (
     e.target instanceof HTMLElement &&
     e.target.hasAttribute(DATA_ATTR.DATE_ID)

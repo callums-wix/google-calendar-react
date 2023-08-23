@@ -1,0 +1,13 @@
+.calendar-container {
+  overflow: hidden;
+  flex-grow: 1;
+  height: 100%;
+}
+.column-container {
+  width: 100%;
+  justify-content: space-between;
+  text-align: center;
+}
+.calendar-column {
+  flex: 1 1 0px;
+}

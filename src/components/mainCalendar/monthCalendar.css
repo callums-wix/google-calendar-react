@@ -1,0 +1,32 @@
+.month-header-container {
+  line-height: 20px;
+  font-size: 11px;
+}
+.month-grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 1fr;
+  text-align: center;
+  height: 100%;
+  border-left: 1px solid var(--hairline);
+}
+.month-header-item {
+  border-left: 1px solid var(--hairline);
+}
+.month-square-container {
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  font-size: 12px;
+  padding: var(--p-md);
+  overflow: hidden;
+}
+.month-list {
+  list-style-type: disc;
+  list-style-position: inside;
+  overflow: hidden;
+}
+.month-item {
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
