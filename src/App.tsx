@@ -1,20 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import MiniCalendar from "./components/sideBar/MiniCalendar";
 import Header from "./components/header/Header";
 import CreateEventBtn from "./components/createEvent/CreateEventBtn";
 import { CSS, ERROR } from "./utils/consts";
 import EventForm from "./components/createEvent/EventForm";
-import useOpenDialog from "./hooks/useDialog";
+import useDialog from "./hooks/useDialog";
 import { VIEW } from "./utils/utils";
 import MainCalendar from "./components/mainCalendar/MainCalendar";
+
 function App() {
   const [view, setView] = useState(VIEW.WEEK);
   const [mainDate, setMainDate] = useState(new Date());
-  const [days, setDays] = useState([]);
   const [miniCalDate, setMiniCalDate] = useState(mainDate);
 
   const formRef = useRef<HTMLDialogElement>(null);
-  const [showEventForm, setShowEventForm] = useOpenDialog(formRef);
+  const [showEventForm, setShowEventForm] = useDialog(formRef);
 
   function handleMainDate(date: Date) {
     setMiniCalDate(date);

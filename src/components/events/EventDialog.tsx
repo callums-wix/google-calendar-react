@@ -4,16 +4,16 @@ import { toReadableTimeString } from "../../utils/utils";
 
 interface EventDialogProps {
   event: EventObject;
-  ref: React.RefObject<HTMLDialogElement>;
-  handleShowEventDialog: (event: EventObject) => void;
+  dialogRef: React.RefObject<HTMLDialogElement>;
+  setToggleDialog: () => void;
 }
 const EventDialog = ({
   event,
-  ref,
-  handleShowEventDialog,
+  dialogRef,
+  setToggleDialog,
 }: EventDialogProps) => {
   return (
-    <dialog className="event-dialog-container" ref={ref}>
+    <dialog className="event-dialog-container" ref={dialogRef}>
       <h3 className="event-dialog-title">{event.title}</h3>
       <p className="event-dialog-time">{toReadableTimeString(event)}</p>
       <p className="event-dialog-desc">{event.description}</p>
@@ -27,7 +27,7 @@ const EventDialog = ({
       </button>
       <button
         className="button close-dialog form-dialog-close"
-        onClick={() => handleShowEventDialog(event)}
+        onClick={() => setToggleDialog()}
       ></button>
     </dialog>
   );

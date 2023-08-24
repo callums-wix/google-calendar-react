@@ -1,0 +1,32 @@
+.event-container {
+  position: absolute;
+  left: 1px;
+  right: 10%;
+  background-color: var(--event-color);
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 17px;
+  padding: var(--p-vs) var(--p-sm);
+  z-index: 100;
+  overflow: hidden;
+  border: 1px solid var(--white);
+}
+
+.event-header {
+  font-weight: 500;
+}
+
+/* Event Dialog */
+.event-dialog-container {
+  top: calc(50vh - 200px);
+  left: calc(50vw - 200px);
+  width: 400px;
+  height: 400px;
+  z-index: 100;
+}
+.event-dialog-delete {
+  position: absolute;
+  bottom: var(--p-xl);
+  right: var(--p-xl);
+}

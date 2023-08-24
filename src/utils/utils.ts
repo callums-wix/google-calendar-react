@@ -143,9 +143,8 @@ function getHoursFromMidnight(date: Date): number {
   return hours + minutes / 60;
 }
 
-export function sortedEventListOnDate(day: Day | null): EventObject[] {
-  if (!day) return [];
-  return day.events.sort(
+export function sortEvents(events: EventObject[]): EventObject[] {
+  return events.sort(
     (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
   );
 }
