@@ -174,3 +174,7 @@ button {
   height: 100%;
   position: relative;
 }
+
+.unfocus {
+  color: var(--on-surface-variant-agm);
+}

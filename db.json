@@ -1,0 +1,168 @@
+{
+  "dates": [
+    {
+      "id": "Tue-Jul-18-2023",
+      "events": []
+    },
+    {
+      "id": "Wed-Jul-19-2023",
+      "events": []
+    },
+    {
+      "id": "Thu-Jul-20-2023",
+      "events": []
+    },
+    {
+      "id": "Mon-Jul-24-2023",
+      "events": []
+    },
+    {
+      "id": "Thu-Aug-03-2023",
+      "events": []
+    },
+    {
+      "id": "Tue-Aug-01-2023",
+      "events": []
+    },
+    {
+      "id": "Wed-Aug-02-2023",
+      "events": [
+        {
+          "id": "28970",
+          "dayId": "Wed-Aug-02-2023",
+          "title": "event 3",
+          "startDate": "2023-08-02T10:25",
+          "endDate": "2023-08-02T14:25",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "Tue-Jul-25-2023",
+      "events": []
+    },
+    {
+      "id": "Fri-Jul-28-2023",
+      "events": [
+        {
+          "id": "79064",
+          "dayId": "Fri-Jul-28-2023",
+          "title": "Event 1",
+          "startDate": "2023-07-28T10:20",
+          "endDate": "2023-07-28T12:20",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "Thu-Jul-27-2023",
+      "events": [
+        {
+          "id": "26569",
+          "dayId": "Thu-Jul-27-2023",
+          "title": "Event 2",
+          "startDate": "2023-07-27T13:25",
+          "endDate": "2023-07-27T15:25",
+          "description": ""
+        },
+        {
+          "id": "58296",
+          "dayId": "Thu-Jul-27-2023",
+          "title": "Event 4",
+          "startDate": "2023-07-27T10:30",
+          "endDate": "2023-07-27T11:30",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "Sun-Jul-30-2023",
+      "events": [
+        {
+          "id": "42334",
+          "dayId": "Sun-Jul-30-2023",
+          "title": "test error",
+          "startDate": "2023-07-30T14:57",
+          "endDate": "2023-07-30T16:57",
+          "description": ""
+        },
+        {
+          "id": "72772",
+          "dayId": "Sun-Jul-30-2023",
+          "title": "Clash",
+          "startDate": "2023-07-30T16:20",
+          "endDate": "2023-07-30T18:20",
+          "description": "",
+          "position": 10
+        },
+        {
+          "id": "71748",
+          "dayId": "Sun-Jul-30-2023",
+          "title": "Clash 2",
+          "startDate": "2023-07-30T17:30",
+          "endDate": "2023-07-30T19:45",
+          "description": "",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "id": "Sat-Jul-29-2023",
+      "events": []
+    },
+    {
+      "id": "Mon-Jul-31-2023",
+      "events": [
+        {
+          "id": "66897",
+          "dayId": "Mon-Jul-31-2023",
+          "title": "Test observer",
+          "startDate": "2023-07-31T14:55",
+          "endDate": "2023-07-31T17:55",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "Thu-Aug-10-2023",
+      "events": []
+    },
+    {
+      "id": "Fri-Aug-11-2023",
+      "events": []
+    },
+    {
+      "id": "Mon-Aug-14-2023",
+      "events": []
+    },
+    {
+      "id": "Fri-Aug-14-2020",
+      "events": []
+    },
+    {
+      "id": "Wed-Oct-14-2020",
+      "events": []
+    },
+    {
+      "id": "Sun-Oct-25-2020",
+      "events": []
+    },
+    {
+      "id": "Fri-Aug-18-2023",
+      "events": []
+    },
+    {
+      "id": "Sun-Aug-20-2023",
+      "events": [
+        {
+          "id": "62289",
+          "dayId": "Sun-Aug-20-2023",
+          "title": "test",
+          "startDate": "2023-08-20T16:00",
+          "endDate": "2023-08-20T17:00",
+          "description": ""
+        }
+      ]
+    }
+  ]
+}

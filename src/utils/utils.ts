@@ -126,25 +126,14 @@ export function getDaysInMonth(date: Date): number {
   return new Date(date.getFullYear(), currentMonth, 0).getDate();
 }
 
-export function positionElement(
-  element: any,
-  startDate: string,
-  endDate: string,
-  blockHeight: number
-): any {
+export function getHeightAndTopPos(event: EventObject, blockHeight: number) {
   const timeDiffInMS =
-    new Date(endDate).getTime() - new Date(startDate).getTime();
+    new Date(event.endDate).getTime() - new Date(event.startDate).getTime();
   const timeDiffInHours = timeDiffInMS / 1000 / 60 / 60;
-  if (!element.options.styles) element.options.styles = [];
-  element.options.styles.push({
-    name: "height",
-    value: `${timeDiffInHours * blockHeight}px`,
-  });
-  element.options.styles.push({
-    name: "top",
-    value: `${getHoursFromMidnight(new Date(startDate)) * blockHeight}px`,
-  });
-  return element;
+  return {
+    height: `${timeDiffInHours * blockHeight}px`,
+    top: `${getHoursFromMidnight(new Date(event.startDate)) * blockHeight}px`,
+  };
 }
 
 function getHoursFromMidnight(date: Date): number {
