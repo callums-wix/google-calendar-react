@@ -1,17 +1,18 @@
 import { EventObject } from "../../types";
 import { STRINGS } from "../../utils/consts";
 import { toReadableTimeString } from "../../utils/utils";
+import "./eventDialog.css";
 
 interface EventDialogProps {
   event: EventObject;
   dialogRef: React.RefObject<HTMLDialogElement>;
   setToggleDialog: () => void;
 }
-const EventDialog = ({
+export default function EventDialog({
   event,
   dialogRef,
   setToggleDialog,
-}: EventDialogProps) => {
+}: EventDialogProps) {
   return (
     <dialog className="event-dialog-container" ref={dialogRef}>
       <h3 className="event-dialog-title">{event.title}</h3>
@@ -31,10 +32,8 @@ const EventDialog = ({
       ></button>
     </dialog>
   );
-};
+}
 
 function handleDelete(id: string, dayid: string) {
   console.log("delete");
 }
-
-export default EventDialog;

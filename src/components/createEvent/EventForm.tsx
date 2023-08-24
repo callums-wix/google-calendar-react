@@ -7,7 +7,10 @@ interface EventFormProps {
   formRef: React.RefObject<HTMLDialogElement>;
 }
 
-const EventForm = ({ setShowEventForm, formRef }: EventFormProps) => {
+export default function EventForm({
+  setShowEventForm,
+  formRef,
+}: EventFormProps) {
   const [toggleError, setToggleError] = useState(false);
   return (
     <dialog className="form-dialog" ref={formRef}>
@@ -62,7 +65,7 @@ const EventForm = ({ setShowEventForm, formRef }: EventFormProps) => {
       ></button>
     </dialog>
   );
-};
+}
 
 interface InputProps {
   name: string;
@@ -70,7 +73,7 @@ interface InputProps {
   required: boolean;
   type: React.HTMLInputTypeAttribute;
 }
-const Input = ({ name, placeholder, required, type }: InputProps) => {
+function Input({ name, placeholder, required, type }: InputProps) {
   return (
     <label htmlFor={`form-${name}`} className={`form-${name}-label`}>
       {`${name}: `}
@@ -85,7 +88,7 @@ const Input = ({ name, placeholder, required, type }: InputProps) => {
       />
     </label>
   );
-};
+}
 
 function handleSubmit(e: SyntheticEvent, setShowEventForm: () => void) {
   e.preventDefault();
@@ -93,5 +96,3 @@ function handleSubmit(e: SyntheticEvent, setShowEventForm: () => void) {
   const formJson = Object.fromEntries(formData.entries());
   setShowEventForm();
 }
-
-export default EventForm;

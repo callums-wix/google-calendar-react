@@ -1,4 +1,4 @@
-import { EventObject } from "../types";
+import { Days, EventObject } from "../types";
 import { UNITS } from "./consts";
 import { Day } from "../types";
 
@@ -143,22 +143,42 @@ function getHoursFromMidnight(date: Date): number {
   return hours + minutes / 60;
 }
 
+export function eventTimeInMs(date: string) {
+  return new Date(date).getTime();
+}
+
+export function getSortedEventsFromDay(
+  id: string,
+  days: Days
+): EventObject[] | null {
+  const events = days.find((day) => day.id === id)?.events;
+  if (events) return sortEvents(events);
+  return null;
+}
 export function sortEvents(events: EventObject[]): EventObject[] {
   return events.sort(
     (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
   );
 }
 
-export function toggleHide(element: HTMLElement): void {
-  if (element.classList.contains("hidden")) {
-    element.classList.remove("hidden");
-    element.style.display = "flex";
-  } else {
-    element.style.display = "none";
-    element.classList.add("hidden");
-  }
-}
-
-export function eventTimeInMs(date: string) {
-  return new Date(date).getTime();
+export function positionEvents(events: EventObject[]): EventObject[] {
+  if (events.length < 2) return events;
+  let position = 0;
+  events.forEach((event, i) => {
+    for (let j = i + 1; j < events.length; j++) {
+      if (eventTimeInMs(event.endDate) < eventTimeInMs(events[j].startDate)) {
+        position = 0;
+        break;
+      }
+      if (eventTimeInMs(event.endDate) > eventTimeInMs(events[j].startDate)) {
+        const previous = events[j - 1];
+        if (previous.position) events[j].position = previous.position + 10;
+        else {
+          position += 10;
+          events[j].position = position;
+        }
+      }
+    }
+  });
+  return events;
 }

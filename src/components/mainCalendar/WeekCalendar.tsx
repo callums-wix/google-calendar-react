@@ -4,17 +4,18 @@ import {
   createDayId,
   createWeekDates,
   eventTimeInMs,
-  sortEvents,
+  getSortedEventsFromDay,
+  positionEvents,
 } from "../../utils/utils";
 import "./weekCalendar.css";
 import { useDays } from "../../context/days";
 import EventElement from "../events/EventElement";
-import { Days, EventObject } from "../../types";
+import { EventObject } from "../../types";
 
 interface WeekCalendarProps {
   mainDate: Date;
 }
-const WeekCalendar = ({ mainDate }: WeekCalendarProps) => {
+export default function WeekCalendar({ mainDate }: WeekCalendarProps) {
   const datesOfWeek = createWeekDates(mainDate);
 
   return (
@@ -23,13 +24,13 @@ const WeekCalendar = ({ mainDate }: WeekCalendarProps) => {
       <WeekGrid datesOfWeek={datesOfWeek} />
     </>
   );
-};
+}
 
 interface WeekHeaderProps {
   datesOfWeek: Date[];
 }
 
-const WeekHeader = ({ datesOfWeek }: WeekHeaderProps) => {
+function WeekHeader({ datesOfWeek }: WeekHeaderProps) {
   return (
     <>
       <div className={`${CSS.H_CONTAINER} calendar-header`}>
@@ -46,12 +47,12 @@ const WeekHeader = ({ datesOfWeek }: WeekHeaderProps) => {
       </div>
     </>
   );
-};
+}
 
 interface DateColumnProps {
   date: Date;
 }
-const DateColumn = ({ date }: DateColumnProps) => {
+function DateColumn({ date }: DateColumnProps) {
   const isToday =
     date.toDateString() === new Date().toDateString()
       ? "calendar-date-today"
@@ -65,12 +66,12 @@ const DateColumn = ({ date }: DateColumnProps) => {
       <div className={`calendar-date ${isToday}`}>{date.getDate()}</div>
     </li>
   );
-};
+}
 
 interface WeekGridProps {
   datesOfWeek: Date[];
 }
-const WeekGrid = ({ datesOfWeek }: WeekGridProps) => {
+function WeekGrid({ datesOfWeek }: WeekGridProps) {
   const gridRef = useRef<HTMLDivElement>(null);
   const days = useDays();
 
@@ -97,16 +98,17 @@ const WeekGrid = ({ datesOfWeek }: WeekGridProps) => {
       >
         {datesOfWeek.map((date) => {
           const id = createDayId(date);
-          const events = getEventsFromDay(id, days);
+          const events = getSortedEventsFromDay(id, days);
 
           return (
             <div
+              key={id}
               className="calendar-event-column calendar-column"
               data-dayid={id}
             >
               {events &&
                 positionEvents(events).map((event) => (
-                  <EventElement event={event} />
+                  <EventElement event={event} key={event.id} />
                 ))}
             </div>
           );
@@ -114,36 +116,4 @@ const WeekGrid = ({ datesOfWeek }: WeekGridProps) => {
       </div>
     </div>
   );
-};
-
-function getEventsFromDay(id: string, days: Days) {
-  return days.find((day) => day.id === id)?.events;
 }
-function positionEvents(events: EventObject[]): EventObject[] {
-  const sortedEvents = sortEvents(events);
-  if (sortedEvents.length < 2) return sortedEvents;
-  let position = 0;
-  sortedEvents.forEach((event, i) => {
-    for (let j = i + 1; j < sortedEvents.length; j++) {
-      if (
-        eventTimeInMs(event.endDate) < eventTimeInMs(sortedEvents[j].startDate)
-      ) {
-        position = 0;
-        break;
-      }
-      if (
-        eventTimeInMs(event.endDate) > eventTimeInMs(sortedEvents[j].startDate)
-      ) {
-        const previous = sortedEvents[j - 1];
-        if (previous.position)
-          sortedEvents[j].position = previous.position + 10;
-        else {
-          position += 10;
-          sortedEvents[j].position = position;
-        }
-      }
-    }
-  });
-  return sortedEvents;
-}
-export default WeekCalendar;

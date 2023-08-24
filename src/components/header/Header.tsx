@@ -11,7 +11,12 @@ interface HeaderProps {
   setView: (view: VIEW) => void;
 }
 
-const Header = ({ view, mainDate, setMainDate, setView }: HeaderProps) => {
+export default function Header({
+  view,
+  mainDate,
+  setMainDate,
+  setView,
+}: HeaderProps) {
   return (
     <header className={`${CSS.H_CONTAINER} header`}>
       <HeaderTitle />
@@ -23,9 +28,9 @@ const Header = ({ view, mainDate, setMainDate, setView }: HeaderProps) => {
       />
     </header>
   );
-};
+}
 
-const HeaderTitle = () => {
+function HeaderTitle() {
   return (
     <div className={`${CSS.H_CONTAINER} header-title-container`}>
       <button className="menu-toggle button">
@@ -35,14 +40,14 @@ const HeaderTitle = () => {
       <h1 className="header-title">Calendar</h1>
     </div>
   );
-};
+}
 interface NavBarProps {
   view: VIEW;
   mainDate: Date;
   setMainDate: (date: Date) => void;
   setView: (view: VIEW) => void;
 }
-const NavBar = ({ view, mainDate, setMainDate, setView }: NavBarProps) => {
+function NavBar({ view, mainDate, setMainDate, setView }: NavBarProps) {
   const dateTitle = `${getMonthString(
     mainDate,
     view
@@ -78,12 +83,12 @@ const NavBar = ({ view, mainDate, setMainDate, setView }: NavBarProps) => {
       </ul>
     </nav>
   );
-};
+}
 interface ViewMenuProps {
   view: VIEW;
   setView: (view: VIEW) => void;
 }
-const ViewMenu = ({ view, setView }: ViewMenuProps) => {
+function ViewMenu({ view, setView }: ViewMenuProps) {
   const [toggleViewMenu, setToggleViewMenu] = useState(false);
   return (
     <li className="view-container nav-item">
@@ -93,16 +98,30 @@ const ViewMenu = ({ view, setView }: ViewMenuProps) => {
       >
         {view.toLowerCase()}
         <span className="view-arrow"></span>
-        {toggleViewMenu && (
-          <menu className="view-menu">
-            <ViewButton view={VIEW.WEEK} viewText="Week" setView={setView} />
-            <ViewButton view={VIEW.MONTH} viewText="Month" setView={setView} />
-          </menu>
-        )}
       </button>
+      {toggleViewMenu && (
+        <menu className="view-menu">
+          <ViewButton
+            view={VIEW.WEEK}
+            viewText="Week"
+            setView={(view) => {
+              setView(view);
+              setToggleViewMenu(!toggleViewMenu);
+            }}
+          />
+          <ViewButton
+            view={VIEW.MONTH}
+            viewText="Month"
+            setView={(view) => {
+              setView(view);
+              setToggleViewMenu(!toggleViewMenu);
+            }}
+          />
+        </menu>
+      )}
     </li>
   );
-};
+}
 
 interface ViewButtonProps {
   viewText: string;
@@ -110,7 +129,7 @@ interface ViewButtonProps {
   setView: (view: VIEW) => void;
 }
 
-const ViewButton = ({ view, viewText, setView }: ViewButtonProps) => {
+function ViewButton({ view, viewText, setView }: ViewButtonProps) {
   return (
     <button
       className="view-item"
@@ -120,7 +139,7 @@ const ViewButton = ({ view, viewText, setView }: ViewButtonProps) => {
       {viewText}
     </button>
   );
-};
+}
 
 function handleChangeToToday(setMainDate: (date: Date) => void) {
   setMainDate(new Date());
@@ -135,5 +154,3 @@ function handleWeekMonthChange(
   const newDate = changeByWeekOrMonth(mainDate, view, dir);
   setMainDate(newDate);
 }
-
-export default Header;

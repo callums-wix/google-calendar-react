@@ -1,5 +1,4 @@
 import "./mainCalendar.css";
-import { useRef, useState } from "react";
 import { CSS } from "../../utils/consts";
 import WeekCalendar from "./WeekCalendar";
 import { VIEW } from "../../utils/utils";
@@ -9,7 +8,7 @@ interface MainCalendarProps {
   mainDate: Date;
   view: VIEW;
 }
-const MainCalendar = ({ mainDate, view }: MainCalendarProps) => {
+export default function MainCalendar({ mainDate, view }: MainCalendarProps) {
   return (
     <DaysProvider>
       <section className={`${CSS.V_CONTAINER} calendar-container`}>
@@ -21,6 +20,4 @@ const MainCalendar = ({ mainDate, view }: MainCalendarProps) => {
       </section>
     </DaysProvider>
   );
-};
-
-export default MainCalendar;
+}

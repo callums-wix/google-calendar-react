@@ -10,7 +10,7 @@ interface EventElementProps {
   event: EventObject;
 }
 
-const EventElement = ({ event }: EventElementProps) => {
+export default function EventElement({ event }: EventElementProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [toggleDialog, setToggleDialog] = useDialog(dialogRef);
 
@@ -42,6 +42,4 @@ const EventElement = ({ event }: EventElementProps) => {
       )}
     </>
   );
-};
-
-export default EventElement;
+}

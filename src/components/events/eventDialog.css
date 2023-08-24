@@ -1,0 +1,12 @@
+.event-dialog-container {
+  top: calc(50vh - 200px);
+  left: calc(50vw - 200px);
+  width: 400px;
+  height: 400px;
+  z-index: 100;
+}
+.event-dialog-delete {
+  position: absolute;
+  bottom: var(--p-xl);
+  right: var(--p-xl);
+}

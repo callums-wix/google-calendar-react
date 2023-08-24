@@ -21,12 +21,12 @@ interface MiniCalendarProps {
   setMiniCalDate: React.Dispatch<React.SetStateAction<Date>>;
 }
 
-const MiniCalendar = ({
+export default function MiniCalendar({
   mainDate,
   setMainDate,
   miniCalDate,
   setMiniCalDate,
-}: MiniCalendarProps) => {
+}: MiniCalendarProps) {
   return (
     <aside className="sidebar-container">
       <div className={`${CSS.V_CONTAINER} mini-calendar-container`}>
@@ -39,13 +39,13 @@ const MiniCalendar = ({
       </div>
     </aside>
   );
-};
+}
 
 interface MiniHeaderProps {
   miniCalDate: Date;
   setMiniCalDate: React.Dispatch<React.SetStateAction<Date>>;
 }
-const MiniHeader = ({ miniCalDate, setMiniCalDate }: MiniHeaderProps) => {
+function MiniHeader({ miniCalDate, setMiniCalDate }: MiniHeaderProps) {
   const calDateHeading = `${getMonthString(
     miniCalDate,
     VIEW.MONTH
@@ -68,14 +68,14 @@ const MiniHeader = ({ miniCalDate, setMiniCalDate }: MiniHeaderProps) => {
       </div>
     </header>
   );
-};
+}
 
 interface NavButtonProps {
   dir: Direction;
   miniCalDate: Date;
   setMiniCalDate: React.Dispatch<React.SetStateAction<Date>>;
 }
-const NavButton = ({ dir, miniCalDate, setMiniCalDate }: NavButtonProps) => {
+function NavButton({ dir, miniCalDate, setMiniCalDate }: NavButtonProps) {
   return (
     <button
       className={`mini-${dir}-btn button mini-btn`}
@@ -86,7 +86,7 @@ const NavButton = ({ dir, miniCalDate, setMiniCalDate }: NavButtonProps) => {
       data-testid={`mini-${dir}`}
     ></button>
   );
-};
+}
 
 interface MinCalProps {
   miniCalDate: Date;
@@ -94,7 +94,7 @@ interface MinCalProps {
   setMainDate: (date: Date) => void;
 }
 
-const MiniCalGrid = ({ miniCalDate, mainDate, setMainDate }: MinCalProps) => {
+function MiniCalGrid({ miniCalDate, mainDate, setMainDate }: MinCalProps) {
   return (
     <table className={`${CSS.V_CONTAINER} mini-calendar-grid`}>
       <thead>
@@ -119,18 +119,14 @@ const MiniCalGrid = ({ miniCalDate, mainDate, setMainDate }: MinCalProps) => {
       />
     </table>
   );
-};
+}
 
 interface MonthDatesProps {
   miniCalDate: Date;
   mainDate: Date;
   setMainDate: (date: Date) => void;
 }
-const MonthDates = ({
-  miniCalDate,
-  mainDate,
-  setMainDate,
-}: MonthDatesProps) => {
+function MonthDates({ miniCalDate, mainDate, setMainDate }: MonthDatesProps) {
   const firstDayOfMonth = getFirstDayOfMonth(miniCalDate);
   let dateMarker = new Date(firstDayOfMonth);
   return (
@@ -156,7 +152,7 @@ const MonthDates = ({
       })}
     </tbody>
   );
-};
+}
 
 interface DateElementProps {
   date: Date;
@@ -164,7 +160,7 @@ interface DateElementProps {
   mainDate: Date;
 }
 
-const DateElement = ({ date, firstDayOfMonth, mainDate }: DateElementProps) => {
+function DateElement({ date, firstDayOfMonth, mainDate }: DateElementProps) {
   let classes = [];
   if (date.toDateString() === new Date().toDateString())
     classes.push("calendar-date-today");
@@ -182,7 +178,7 @@ const DateElement = ({ date, firstDayOfMonth, mainDate }: DateElementProps) => {
       {date.getDate().toString()}
     </td>
   );
-};
+}
 
 function handleSelectDate(e: MouseEvent, setMainDate: (date: Date) => void) {
   if (
@@ -192,5 +188,3 @@ function handleSelectDate(e: MouseEvent, setMainDate: (date: Date) => void) {
     setMainDate(new Date(e.target.dataset.dateid as string));
   }
 }
-
-export default MiniCalendar;
