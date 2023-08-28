@@ -32,7 +32,11 @@ export const UNITS = {
   HOURS_IN_DAY: 24,
   DAYS_IN_WEEK: 7,
 };
-
+export const DISPATCH = {
+  SET: "set",
+  CREATE: "create",
+  DELETE: "delete",
+};
 export const CSS = {
   SIDEBAR_CONTAINER: "sidebar-container",
   H_CONTAINER: "h-container",

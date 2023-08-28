@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { Direction } from "../../types";
 import { CSS, TITLE_IMAGE } from "../../utils/consts";
 import { VIEW, changeByWeekOrMonth, getMonthString } from "../../utils/utils";
 import "./header.css";
+import ViewMenu from "./ViewMenu";
 
 interface HeaderProps {
   view: VIEW;
@@ -41,6 +41,7 @@ function HeaderTitle() {
     </div>
   );
 }
+
 interface NavBarProps {
   view: VIEW;
   mainDate: Date;
@@ -82,62 +83,6 @@ function NavBar({ view, mainDate, setMainDate, setView }: NavBarProps) {
         <ViewMenu view={view} setView={setView} />
       </ul>
     </nav>
-  );
-}
-interface ViewMenuProps {
-  view: VIEW;
-  setView: (view: VIEW) => void;
-}
-function ViewMenu({ view, setView }: ViewMenuProps) {
-  const [toggleViewMenu, setToggleViewMenu] = useState(false);
-  return (
-    <li className="view-container nav-item">
-      <button
-        className="view-button hairline-button button h-container"
-        onClick={() => setToggleViewMenu(!toggleViewMenu)}
-      >
-        {view.toLowerCase()}
-        <span className="view-arrow"></span>
-      </button>
-      {toggleViewMenu && (
-        <menu className="view-menu">
-          <ViewButton
-            view={VIEW.WEEK}
-            viewText="Week"
-            setView={(view) => {
-              setView(view);
-              setToggleViewMenu(!toggleViewMenu);
-            }}
-          />
-          <ViewButton
-            view={VIEW.MONTH}
-            viewText="Month"
-            setView={(view) => {
-              setView(view);
-              setToggleViewMenu(!toggleViewMenu);
-            }}
-          />
-        </menu>
-      )}
-    </li>
-  );
-}
-
-interface ViewButtonProps {
-  viewText: string;
-  view: VIEW;
-  setView: (view: VIEW) => void;
-}
-
-function ViewButton({ view, viewText, setView }: ViewButtonProps) {
-  return (
-    <button
-      className="view-item"
-      data-view={view}
-      onClick={() => setView(view)}
-    >
-      {viewText}
-    </button>
   );
 }
 

@@ -3,21 +3,18 @@ import { CSS, STRINGS, UNITS, dayOfWeeks } from "../../utils/consts";
 import {
   createDayId,
   createWeekDates,
-  eventTimeInMs,
   getSortedEventsFromDay,
   positionEvents,
 } from "../../utils/utils";
 import "./weekCalendar.css";
-import { useDays } from "../../context/days";
+import { useDays } from "../../context/daysContext";
 import EventElement from "../events/EventElement";
-import { EventObject } from "../../types";
 
 interface WeekCalendarProps {
   mainDate: Date;
 }
 export default function WeekCalendar({ mainDate }: WeekCalendarProps) {
   const datesOfWeek = createWeekDates(mainDate);
-
   return (
     <>
       <WeekHeader datesOfWeek={datesOfWeek} />
@@ -40,7 +37,7 @@ function WeekHeader({ datesOfWeek }: WeekHeaderProps) {
         <ol
           className={`${CSS.H_CONTAINER} column-container calendar-days-container`}
         >
-          {datesOfWeek.map((date, i) => (
+          {datesOfWeek.map((date) => (
             <DateColumn date={date} key={createDayId(date)} />
           ))}
         </ol>
@@ -73,7 +70,7 @@ interface WeekGridProps {
 }
 function WeekGrid({ datesOfWeek }: WeekGridProps) {
   const gridRef = useRef<HTMLDivElement>(null);
-  const days = useDays();
+  const { days } = useDays();
 
   useEffect(() => {
     if (gridRef.current) {

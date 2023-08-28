@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useDays } from "../../context/days";
+import { useDays } from "../../context/daysContext";
 import useDialog from "../../hooks/useDialog";
 import {
   formatTimeString,
@@ -15,7 +15,7 @@ interface MonthSquareProps {
   id: string;
 }
 export default function MonthDay({ date, mainDate, id }: MonthSquareProps) {
-  const days = useDays();
+  const { days } = useDays();
   const events = getSortedEventsFromDay(id, days);
 
   const unfocus = date.getMonth() !== mainDate.getMonth() ? "unfocus" : "focus";

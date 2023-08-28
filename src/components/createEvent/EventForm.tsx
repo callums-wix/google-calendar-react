@@ -1,6 +1,9 @@
 import { SyntheticEvent, useState } from "react";
 import { CSS, STRINGS } from "../../utils/consts";
 import "./eventForm.css";
+import { useDays } from "../../context/daysContext";
+import { EventObject } from "../../types";
+import { createDayId, createEventId } from "../../utils/utils";
 
 interface EventFormProps {
   setShowEventForm: () => void;
@@ -12,6 +15,24 @@ export default function EventForm({
   formRef,
 }: EventFormProps) {
   const [toggleError, setToggleError] = useState(false);
+  const { addEvent } = useDays();
+
+  function handleSubmit(e: SyntheticEvent, setShowEventForm: () => void) {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const formJson = Object.fromEntries(formData.entries());
+    const event: EventObject = {
+      id: createEventId(),
+      dayId: createDayId(new Date(formJson["form-start"] as string)),
+      title: formJson["form-title"] as string,
+      startDate: formJson["form-start"] as string,
+      endDate: formJson["form-end"] as string,
+      description: formJson["form-desc"] as string,
+    };
+    addEvent(event);
+    setShowEventForm();
+  }
+
   return (
     <dialog className="form-dialog" ref={formRef}>
       <form
@@ -73,6 +94,7 @@ interface InputProps {
   required: boolean;
   type: React.HTMLInputTypeAttribute;
 }
+
 function Input({ name, placeholder, required, type }: InputProps) {
   return (
     <label htmlFor={`form-${name}`} className={`form-${name}-label`}>
@@ -88,11 +110,4 @@ function Input({ name, placeholder, required, type }: InputProps) {
       />
     </label>
   );
-}
-
-function handleSubmit(e: SyntheticEvent, setShowEventForm: () => void) {
-  e.preventDefault();
-  const formData = new FormData(e.target as HTMLFormElement);
-  const formJson = Object.fromEntries(formData.entries());
-  setShowEventForm();
 }

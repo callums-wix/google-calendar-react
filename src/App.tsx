@@ -5,6 +5,7 @@ import CreateEventBtn from "./components/createEvent/CreateEventBtn";
 import { CSS } from "./utils/consts";
 import { VIEW } from "./utils/utils";
 import MainCalendar from "./components/mainCalendar/MainCalendar";
+import { DaysProvider } from "./context/daysContext";
 
 function App() {
   const [view, setView] = useState(VIEW.WEEK);
@@ -18,22 +19,24 @@ function App() {
 
   return (
     <>
-      <Header
-        view={view}
-        mainDate={mainDate}
-        setMainDate={handleMainDate}
-        setView={setView}
-      />
-      <main className={`${CSS.H_CONTAINER} main-container`}>
-        <CreateEventBtn />
-        <MiniCalendar
+      <DaysProvider>
+        <Header
+          view={view}
           mainDate={mainDate}
           setMainDate={handleMainDate}
-          miniCalDate={miniCalDate}
-          setMiniCalDate={setMiniCalDate}
+          setView={setView}
         />
-        <MainCalendar mainDate={mainDate} view={view} />
-      </main>
+        <main className={`${CSS.H_CONTAINER} main-container`}>
+          <CreateEventBtn />
+          <MiniCalendar
+            mainDate={mainDate}
+            setMainDate={handleMainDate}
+            miniCalDate={miniCalDate}
+            setMiniCalDate={setMiniCalDate}
+          />
+          <MainCalendar mainDate={mainDate} view={view} />
+        </main>
+      </DaysProvider>
     </>
   );
 }
