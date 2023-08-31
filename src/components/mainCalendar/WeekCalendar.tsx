@@ -1,14 +1,8 @@
 import { useEffect, useRef } from "react";
 import { CSS, STRINGS, UNITS, dayOfWeeks } from "../../utils/consts";
-import {
-  createDayId,
-  createWeekDates,
-  getSortedEventsFromDay,
-  positionEvents,
-} from "../../utils/utils";
+import { createDayId, createWeekDates } from "../../utils/utils";
 import "./weekCalendar.css";
-import { useDays } from "../../context/daysContext";
-import EventElement from "../events/EventElement";
+import WeekColumn from "./WeekColumn";
 
 interface WeekCalendarProps {
   mainDate: Date;
@@ -70,7 +64,6 @@ interface WeekGridProps {
 }
 function WeekGrid({ datesOfWeek }: WeekGridProps) {
   const gridRef = useRef<HTMLDivElement>(null);
-  const { days } = useDays();
 
   useEffect(() => {
     if (gridRef.current) {
@@ -93,23 +86,9 @@ function WeekGrid({ datesOfWeek }: WeekGridProps) {
       <div
         className={`${CSS.H_CONTAINER} column-container grid-column-container`}
       >
-        {datesOfWeek.map((date) => {
-          const id = createDayId(date);
-          const events = getSortedEventsFromDay(id, days);
-
-          return (
-            <div
-              key={id}
-              className="calendar-event-column calendar-column"
-              data-dayid={id}
-            >
-              {events &&
-                positionEvents(events).map((event) => (
-                  <EventElement event={event} key={event.id} />
-                ))}
-            </div>
-          );
-        })}
+        {datesOfWeek.map((date) => (
+          <WeekColumn date={date} />
+        ))}
       </div>
     </div>
   );
