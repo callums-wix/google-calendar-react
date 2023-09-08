@@ -34,7 +34,7 @@ describe("WeekColumn", () => {
     const col = render(weekColumn);
     const elements = screen.getAllByTestId("event-element");
     expect(elements).toHaveLength(mockEvents.length);
-    expect(col.baseElement).toHaveTextContent("Event 1");
+    expect(col.baseElement).to("Event 1");
     expect(col.baseElement).toHaveTextContent("Event 2");
   });
   test("should should contain correct data-dayid", () => {

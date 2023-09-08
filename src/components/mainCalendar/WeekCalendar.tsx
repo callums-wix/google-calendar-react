@@ -8,10 +8,7 @@ import {
 } from "../../utils/utils";
 import "./weekCalendar.css";
 import { useDays } from "../../context/daysContext";
-<<<<<<< Updated upstream
 import EventElement from "../events/EventElement";
-=======
->>>>>>> Stashed changes
 
 interface WeekCalendarProps {
   mainDate: Date;
