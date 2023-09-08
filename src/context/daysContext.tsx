@@ -6,13 +6,13 @@ import daysReducer from "./daysReducer";
 
 const db = new Store(DB.URL);
 
-interface DaysContextProps {
+export interface DaysContextProps {
   days: Days;
   addEvent: (event: EventObject) => void;
   deleteEvent: (event: EventObject) => void;
 }
 
-const DaysContext = createContext<DaysContextProps | null>(null);
+export const DaysContext = createContext<DaysContextProps | null>(null);
 
 interface DaysProviderProps {
   children: React.ReactNode;

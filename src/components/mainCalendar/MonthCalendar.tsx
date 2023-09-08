@@ -18,7 +18,7 @@ export default function MonthCalendar({ mainDate }: MonthCalendarProps) {
 function MonthHeader() {
   return (
     <ol
-      className={`${CSS.H_CONTAINER} column-container month-header-container`}
+      className={`${CSS.H_CONTAINER} column-container month-header-container`} data-testid='month-header'
     >
       {Array.from({ length: UNITS.DAYS_IN_WEEK }).map((_, i) => {
         return (

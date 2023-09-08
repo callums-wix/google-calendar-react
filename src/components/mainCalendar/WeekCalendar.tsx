@@ -8,7 +8,10 @@ import {
 } from "../../utils/utils";
 import "./weekCalendar.css";
 import { useDays } from "../../context/daysContext";
+<<<<<<< Updated upstream
 import EventElement from "../events/EventElement";
+=======
+>>>>>>> Stashed changes
 
 interface WeekCalendarProps {
   mainDate: Date;
@@ -30,7 +33,10 @@ interface WeekHeaderProps {
 function WeekHeader({ datesOfWeek }: WeekHeaderProps) {
   return (
     <>
-      <div className={`${CSS.H_CONTAINER} calendar-header`}>
+      <div
+        className={`${CSS.H_CONTAINER} calendar-header`}
+        data-testid="week-header"
+      >
         <div className="calendar-sidebar gmt-container small-text">
           {STRINGS.GMT}
         </div>

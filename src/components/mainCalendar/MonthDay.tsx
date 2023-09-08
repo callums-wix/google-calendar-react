@@ -35,7 +35,7 @@ interface EventItemProps {
   event: EventObject;
 }
 
-function EventItem({ event }: EventItemProps) {
+export function EventItem({ event }: EventItemProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [toggleDialog, setToggleDialog] = useDialog(dialogRef);
   return (
