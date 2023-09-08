@@ -1,12 +1,12 @@
-export const dayOfWeeks: { [k: number]: string } = {
-  0: "Sunday",
-  1: "Monday",
-  2: "Tuesday",
-  3: "Wednesday",
-  4: "Thursday",
-  5: "Friday",
-  6: "Saturday",
-};
+export const dayOfWeeks: string[] = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 export const DB = {
   URL: "http://localhost:3000/",
 };

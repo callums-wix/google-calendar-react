@@ -9,25 +9,43 @@ interface EventFormProps {
   setShowEventForm: () => void;
   formRef: React.RefObject<HTMLDialogElement>;
 }
+interface FormData {
+  title: string;
+  start: string;
+  end: string;
+  desc: string;
+}
+type InputNames = keyof FormData;
 
 export default function EventForm({
   setShowEventForm,
   formRef,
 }: EventFormProps) {
-  const [toggleError, setToggleError] = useState(false);
   const { addEvent } = useDays();
+  const [toggleError, setToggleError] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    title: "",
+    start: "",
+    end: "",
+    desc: "",
+  });
 
   function handleSubmit(e: SyntheticEvent, setShowEventForm: () => void) {
     e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    const formJson = Object.fromEntries(formData.entries());
+    if (
+      new Date(formData.start.toString()).getTime() >=
+      new Date(formData.end.toString()).getTime()
+    ) {
+      setToggleError(true);
+      return;
+    }
     const event: EventObject = {
       id: createEventId(),
-      dayId: createDayId(new Date(formJson["form-start"] as string)),
-      title: formJson["form-title"] as string,
-      startDate: formJson["form-start"] as string,
-      endDate: formJson["form-end"] as string,
-      description: formJson["form-desc"] as string,
+      dayId: createDayId(new Date(formData.start.toString())),
+      title: formData.title,
+      startDate: formData.start,
+      endDate: formData.end,
+      description: formData.desc,
     };
     addEvent(event);
     setShowEventForm();
@@ -40,20 +58,27 @@ export default function EventForm({
         action=""
         method="dialog"
         onSubmit={(e) => handleSubmit(e, setShowEventForm)}
+        data-testid="form-dialog"
       >
         <Input
+          formData={formData}
+          setFormData={setFormData}
           name="title"
           type="text"
           required={true}
           placeholder="Add title"
         />
         <Input
+          formData={formData}
+          setFormData={setFormData}
           name="start"
           type="datetime-local"
           required={true}
           placeholder=""
         />
         <Input
+          formData={formData}
+          setFormData={setFormData}
           name="end"
           type="datetime-local"
           required={true}
@@ -67,6 +92,13 @@ export default function EventForm({
             cols={40}
             rows={3}
             data-testid="form-desc"
+            value={formData.desc}
+            onChange={(e) =>
+              setFormData((prevValue) => ({
+                ...prevValue,
+                desc: e.target.value,
+              }))
+            }
           />
         </label>
         <button
@@ -89,13 +121,22 @@ export default function EventForm({
 }
 
 interface InputProps {
-  name: string;
+  name: InputNames;
   placeholder: string;
   required: boolean;
   type: React.HTMLInputTypeAttribute;
+  formData: FormData;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 }
 
-function Input({ name, placeholder, required, type }: InputProps) {
+function Input({
+  name,
+  placeholder,
+  required,
+  type,
+  formData,
+  setFormData,
+}: InputProps) {
   return (
     <label htmlFor={`form-${name}`} className={`form-${name}-label`}>
       {`${name}: `}
@@ -107,6 +148,10 @@ function Input({ name, placeholder, required, type }: InputProps) {
         required={required}
         placeholder={placeholder}
         data-testid={`form-${name}`}
+        value={formData[name]}
+        onChange={(e) =>
+          setFormData((prevValue) => ({ ...prevValue, [name]: e.target.value }))
+        }
       />
     </label>
   );

@@ -22,6 +22,7 @@ export default function EventElement({ event }: EventElementProps) {
         data-eventid={event.id}
         data-dayid={event.dayId}
         data-type={event}
+        data-testid="event-element"
         onClick={() => setToggleDialog()}
         style={{
           left: `${event.position ? event.position : 0}px`,
@@ -31,7 +32,7 @@ export default function EventElement({ event }: EventElementProps) {
       >
         <h3 className="event-header">{event.title}</h3>
         <p className="event-start">{toReadableTimeString(event)}</p>
-        <p className="event-desc">{event.description}</p>
+        {event.description && <p className="event-desc">{event.description}</p>}
       </button>
       {toggleDialog && (
         <EventDialog

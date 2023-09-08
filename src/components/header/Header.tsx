@@ -61,6 +61,7 @@ function NavBar({ view, mainDate, setMainDate, setView }: NavBarProps) {
           <button
             className="todau-button button hairline-button"
             onClick={() => handleChangeToToday(setMainDate)}
+            data-testid="switch-today"
           >
             Today
           </button>
@@ -71,15 +72,19 @@ function NavBar({ view, mainDate, setMainDate, setView }: NavBarProps) {
             onClick={() =>
               handleWeekMonthChange("previous", view, mainDate, setMainDate)
             }
+            data-testid="switch-prev"
           ></button>
           <button
             className="next-week-button change-week-button button"
             onClick={() =>
               handleWeekMonthChange("next", view, mainDate, setMainDate)
             }
+            data-testid="switch-next"
           ></button>
         </li>
-        <li className="header-date nav-item">{dateTitle}</li>
+        <li className="header-date nav-item" data-testid="header-month">
+          {dateTitle}
+        </li>
         <ViewMenu view={view} setView={setView} />
       </ul>
     </nav>

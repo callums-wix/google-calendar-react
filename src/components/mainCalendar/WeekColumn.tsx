@@ -1,26 +1,16 @@
-import {
-  createDayId,
-  getSortedEventsFromDay,
-  positionEvents,
-} from "../../utils/utils";
+import { positionEvents } from "../../utils/utils";
 import EventElement from "../events/EventElement";
-import { useDays } from "../../context/daysContext";
+import { EventObject } from "../../types";
+import React from "react";
 
 interface WeekColumnProps {
-  date: Date;
+  events: EventObject[] | null;
+  dayId: string;
 }
 
-function WeekColumn({ date }: WeekColumnProps) {
-  const { days } = useDays();
-  const id = createDayId(date);
-  const events = getSortedEventsFromDay(id, days);
-
+function WeekColumn({ events, dayId }: WeekColumnProps) {
   return (
-    <div
-      key={id}
-      className="calendar-event-column calendar-column"
-      data-dayid={id}
-    >
+    <div className="calendar-event-column calendar-column" data-dayid={dayId}>
       {events &&
         positionEvents(events).map((event) => (
           <EventElement event={event} key={event.id} />

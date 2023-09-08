@@ -32,7 +32,7 @@
           "title": "event 3",
           "startDate": "2023-08-02T10:25",
           "endDate": "2023-08-02T14:25",
-          "description": ""
+          "description": "This is a description"
         },
         {
           "id": "65540",
@@ -171,6 +171,7 @@
       "events": []
     },
     {
+      "id": "Thu-Aug-24-2023",
       "events": [
         {
           "id": "1485",
@@ -189,22 +190,6 @@
           "description": ""
         },
         {
-          "id": "2023",
-          "dayId": "Thu-Aug-24-2023",
-          "title": "Test2",
-          "startDate": "2023-08-24T17:39",
-          "endDate": "2023-08-24T18:39",
-          "description": "asdasd"
-        },
-        {
-          "id": "72578",
-          "dayId": "Thu-Aug-24-2023",
-          "title": "Test3",
-          "startDate": "2023-08-24T18:48",
-          "endDate": "2023-08-24T20:48",
-          "description": ""
-        },
-        {
           "id": "72311",
           "dayId": "Thu-Aug-24-2023",
           "title": "sdf",
@@ -212,8 +197,7 @@
           "endDate": "2023-08-24T10:07",
           "description": "asdfa"
         }
-      ],
-      "id": "Thu-Aug-24-2023"
+      ]
     },
     {
       "id": "Tue-Aug-22-2023",
@@ -229,15 +213,8 @@
       ]
     },
     {
+      "id": "Fri-Aug-25-2023",
       "events": [
-        {
-          "id": "92804",
-          "dayId": "Fri-Aug-25-2023",
-          "title": "zzxcz",
-          "startDate": "2023-08-25T17:11",
-          "endDate": "2023-08-25T19:11",
-          "description": ""
-        },
         {
           "id": "68030",
           "dayId": "Fri-Aug-25-2023",
@@ -255,14 +232,6 @@
           "description": ""
         },
         {
-          "id": "66177",
-          "dayId": "Fri-Aug-25-2023",
-          "title": "asd",
-          "startDate": "2023-08-25T14:30",
-          "endDate": "2023-08-25T16:30",
-          "description": ""
-        },
-        {
           "id": "69592",
           "dayId": "Fri-Aug-25-2023",
           "title": "asd",
@@ -270,8 +239,7 @@
           "endDate": "2023-08-25T16:38",
           "description": ""
         }
-      ],
-      "id": "Fri-Aug-25-2023"
+      ]
     },
     {
       "events": [
@@ -303,6 +271,7 @@
       "id": "Mon-Aug-21-2023"
     },
     {
+      "id": "Sat-Aug-26-2023",
       "events": [
         {
           "id": "28169",
@@ -319,17 +288,8 @@
           "startDate": "2023-08-26T17:21",
           "endDate": "2023-08-26T19:22",
           "description": ""
-        },
-        {
-          "id": "60610",
-          "dayId": "Sat-Aug-26-2023",
-          "title": "sadfa",
-          "startDate": "2023-08-26T15:38",
-          "endDate": "2023-08-26T17:38",
-          "description": ""
         }
-      ],
-      "id": "Sat-Aug-26-2023"
+      ]
     },
     {
       "events": [
@@ -374,6 +334,7 @@
       ]
     },
     {
+      "id": "Tue-Aug-29-2023",
       "events": [
         {
           "id": "22452",
@@ -383,8 +344,7 @@
           "endDate": "2023-08-29T16:34",
           "description": ""
         }
-      ],
-      "id": "Tue-Aug-29-2023"
+      ]
     },
     {
       "id": "Sun-Aug-27-2023",
@@ -399,6 +359,23 @@
           "title": "asd",
           "startDate": "2023-08-04T14:21",
           "endDate": "2023-08-04T14:21",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "Wed-Aug-30-2023",
+      "events": []
+    },
+    {
+      "id": "Tue-Aug-15-2023",
+      "events": [
+        {
+          "id": "84856",
+          "dayId": "Tue-Aug-15-2023",
+          "title": "Title",
+          "startDate": "2023-08-15T11:00",
+          "endDate": "2023-08-15T14:00",
           "description": ""
         }
       ]
