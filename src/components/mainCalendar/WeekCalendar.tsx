@@ -30,7 +30,10 @@ interface WeekHeaderProps {
 function WeekHeader({ datesOfWeek }: WeekHeaderProps) {
   return (
     <>
-      <div className={`${CSS.H_CONTAINER} calendar-header`}>
+      <div
+        className={`${CSS.H_CONTAINER} calendar-header`}
+        data-testid="week-header"
+      >
         <div className="calendar-sidebar gmt-container small-text">
           {STRINGS.GMT}
         </div>

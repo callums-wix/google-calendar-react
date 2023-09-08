@@ -2,7 +2,8 @@ import { expect, test, describe, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { EventObject } from "../../types";
 import WeekColumn from "./WeekColumn";
-import { createDayId } from "../../utils/utils";
+import { createDayId, createWeekDates } from "../../utils/utils";
+import React from "react";
 
 describe("WeekColumn", () => {
   let weekColumn: JSX.Element;
@@ -34,7 +35,12 @@ describe("WeekColumn", () => {
     const col = render(weekColumn);
     const elements = screen.getAllByTestId("event-element");
     expect(elements).toHaveLength(mockEvents.length);
-    expect(col.baseElement).toHaveTextContent("Event 1");
+    expect(col.baseElement).to("Event 1");
     expect(col.baseElement).toHaveTextContent("Event 2");
+  });
+  test("should should contain correct data-dayid", () => {
+    render(weekColumn);
+    const col = screen.getByTestId("event-column");
+    expect(col.dataset.dayid).toBe(createDayId(mockDate));
   });
 });

@@ -9,7 +9,9 @@
     "lint": "eslint --max-warnings=0 src",
     "preview": "vite preview",
     "server": "json-server --watch db.json",
-    "test": "vitest"
+    "test": "vitest",
+    "test:e2e": "npx playwright test",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "json-server": "^0.17.3",
@@ -17,6 +19,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.37.1",
     "@testing-library/jest-dom": "^6.1.2",
     "@testing-library/react": "^14.0.0",
     "@types/react": "^18.2.15",

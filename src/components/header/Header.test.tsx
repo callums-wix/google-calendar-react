@@ -2,6 +2,7 @@ import { expect, test, describe, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Header from "./Header";
 import { VIEW } from "../../utils/utils";
+import React from "react";
 
 describe("Test Header", () => {
   let header: JSX.Element;

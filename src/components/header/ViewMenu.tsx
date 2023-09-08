@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { VIEW } from "../../utils/utils";
+import React from "react";
 
 interface ViewMenuProps {
   view: VIEW;
@@ -18,7 +19,7 @@ export default function ViewMenu({ view, setView }: ViewMenuProps) {
         <span className="view-arrow"></span>
       </button>
       {toggleViewMenu && (
-        <menu className="view-menu" data-testId={"view-menu"}>
+        <menu className="view-menu" data-testid={"view-menu"}>
           <ViewButton
             view={VIEW.WEEK}
             viewText="Week"

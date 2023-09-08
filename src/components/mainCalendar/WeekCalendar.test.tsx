@@ -18,7 +18,6 @@ describe("WeekCalendar", () => {
   });
   test("should correctly display days of the week", () => {
     const container = render(weekCalendar);
-    screen.debug();
     dayOfWeeks.forEach((day) => {
       expect(container.baseElement).toHaveTextContent(day);
     });

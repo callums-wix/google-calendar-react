@@ -10,7 +10,11 @@ interface WeekColumnProps {
 
 function WeekColumn({ events, dayId }: WeekColumnProps) {
   return (
-    <div className="calendar-event-column calendar-column" data-dayid={dayId}>
+    <div
+      className="calendar-event-column calendar-column"
+      data-testid="event-column"
+      data-dayid={dayId}
+    >
       {events &&
         positionEvents(events).map((event) => (
           <EventElement event={event} key={event.id} />

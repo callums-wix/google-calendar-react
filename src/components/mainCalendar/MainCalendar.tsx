@@ -3,7 +3,7 @@ import { CSS } from "../../utils/consts";
 import WeekCalendar from "./WeekCalendar";
 import { VIEW } from "../../utils/utils";
 import MonthCalendar from "./MonthCalendar";
-import { DaysProvider } from "../../context/daysContext";
+import React from "react";
 interface MainCalendarProps {
   mainDate: Date;
   view: VIEW;

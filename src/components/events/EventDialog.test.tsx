@@ -5,6 +5,7 @@ import EventDialog from "./EventDialog";
 import { createRef } from "react";
 import { DaysProvider } from "../../context/daysContext";
 import { toReadableTimeString } from "../../utils/utils";
+import React from "react";
 
 describe("EventDialog", () => {
   const event: EventObject = {

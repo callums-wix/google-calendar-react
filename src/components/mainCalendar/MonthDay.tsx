@@ -8,6 +8,7 @@ import {
 } from "../../utils/utils";
 import EventDialog from "../events/EventDialog";
 import { EventObject } from "../../types";
+import React from "react";
 
 interface MonthSquareProps {
   date: Date;
@@ -35,7 +36,7 @@ interface EventItemProps {
   event: EventObject;
 }
 
-function EventItem({ event }: EventItemProps) {
+export function EventItem({ event }: EventItemProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [toggleDialog, setToggleDialog] = useDialog(dialogRef);
   return (

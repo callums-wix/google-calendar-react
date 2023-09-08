@@ -6,6 +6,7 @@ import { CSS } from "./utils/consts";
 import { VIEW } from "./utils/utils";
 import MainCalendar from "./components/mainCalendar/MainCalendar";
 import { DaysProvider } from "./context/daysContext";
+import React from "react";
 
 function App() {
   const [view, setView] = useState(VIEW.WEEK);

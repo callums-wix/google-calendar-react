@@ -1,3 +1,4 @@
+import React from "react";
 import { Direction } from "../../types";
 import { CSS, TITLE_IMAGE } from "../../utils/consts";
 import { VIEW, changeByWeekOrMonth, getMonthString } from "../../utils/utils";

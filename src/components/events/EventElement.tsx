@@ -5,6 +5,7 @@ import { getHeightAndTopPos, toReadableTimeString } from "../../utils/utils";
 import "./eventElement.css";
 import EventDialog from "./EventDialog";
 import useDialog from "../../hooks/useDialog";
+import React from "react";
 
 interface EventElementProps {
   event: EventObject;

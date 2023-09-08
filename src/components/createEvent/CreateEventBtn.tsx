@@ -3,6 +3,7 @@ import { CSS } from "../../utils/consts";
 import "./createEventBtn.css";
 import useDialog from "../../hooks/useDialog";
 import EventForm from "./EventForm";
+import React from "react";
 
 export default function CreateEventBtn() {
   const formRef = useRef<HTMLDialogElement>(null);

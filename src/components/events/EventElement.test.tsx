@@ -5,6 +5,7 @@ import { EventObject } from "../../types";
 import { DaysProvider } from "../../context/daysContext";
 import { getHeightAndTopPos, toReadableTimeString } from "../../utils/utils";
 import { UNITS } from "../../utils/consts";
+import React from "react";
 
 const mockEvent: EventObject = {
   id: "28970",

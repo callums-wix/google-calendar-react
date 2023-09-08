@@ -7,7 +7,13 @@ export default defineConfig({
   test: {
     environment: "happy-dom",
     globals: true,
-    setupFiles: ["setup_test.js"],
+    setupFiles: ["setup_test.ts"],
+    exclude: [
+      "tests/**",
+    ],
   },
   plugins: [react()],
+  optimizeDeps: {
+    include: ["react/jsx-runtime"],
+  },
 });
